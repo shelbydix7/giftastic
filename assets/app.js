@@ -2,12 +2,13 @@ $(document).ready(function() {
 
   lastClick = [];
   
-    
-  var animalGifs = {
   
-    animalSearches: ["Horse", "Pig", "Dog", "Cat", "Whale","Bird", 
-    "Elephant", "Dolphin", "Dinosaur", "Fish", "Giraffe", "Lizard", 
-    "Shark", "Spider", "Tiger", "Lion", "Squirell", "Hedgehog", "Octopus"],
+  
+    var animalGifs = {
+      
+      animalSearches: ["Horse", "Pig", "Dog", "Cat", "Whale","Bird",
+     "Elephant", "Dolphin", "Dinosaur", "Fish", "Giraffe", "Lizard",
+     "Shark", "Spider", "Tiger", "Lion", "Squirell", "Hedgehog", "Octopus"],
   
     buttonLoop: function() {
       for (var b = 0; b < animalGifs.animalSearches.length - 1; b++) {
@@ -18,12 +19,12 @@ $(document).ready(function() {
   
     divLoop: function(click) {
   
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=B26sstJns2pZuNT5HiJpqS5FV8Su1sDd&q=" + lastClick + "&limit=10"
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=T13BgZHM0d4cjAEPaHZQ4wvYDDoitlbb&q=" + lastClick + "&limit=10"
   
         $.ajax({
           url: queryURL,
           method: "GET"
-        }).done(function(response) {`
+        }).done(function(response) {
   
         
           for (var i = 0; i < response.data.length; i++) {
@@ -34,17 +35,17 @@ $(document).ready(function() {
   
             var dynDiv = $("<div class='dyn-div'>");
   
-            var comedyImg = $("<img class='still-image'>");
+            var animalImg = $("<img class='still-image'>");
   
             animalImg.attr("src", image);
-            animalImg.attr("alt", "Animals still frame of gif");
+            animalImg.attr("alt", "Animal still frame of gif");
             animalImg.attr("data-gif", gif);
             animalImg.attr("class", "animalImg");
             animalImg.attr("data-index", i);
             animalImg.attr("data-img", image);
   
             dynDiv.append("<p> Rating: " + rating + "</p>");
-            dynDiv.append(comedyImg);
+            dynDiv.append(animalImg);
   
             $("#append-img-div").prepend($(dynDiv));
         };
@@ -57,15 +58,15 @@ $(document).ready(function() {
           animalGifs.animalSearches.push(userInput);
           var buttonU = $("<button class='dynGen'>").text(userInput).attr("data-index", userInput);
           $("#buttons").append(buttonU);
-          //console.log(animalGifs.aniamlsearches);
+          //console.log(animalGifs.animalsearches);
       }
   };
   
-  AniamlGifs.buttonLoop();
+  animalGifs.buttonLoop();
   
-  $("#animmal-add-submit").on("click", function(event) {
+  $("#animal-add-submit").on("click", function(event) {
     event.preventDefault();
-    comedyGifs.userPush();
+    animalGifs.userPush();
   });
   
   $(document).on("click", "button.dynGen", function(event) {
@@ -93,3 +94,4 @@ $(document).ready(function() {
     $(this).attr("src", tempUrl2);
     };
   });
+});
